@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <VueOtpInput />
+    <VueOtpInput seperator="-" :numInputs="4" />
   </div>
 </template>
 
