@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <VueOtpInput seperator="-" :numInputs="5" />
+    <VueOtpInput seperator="-" :numInputs="5" shouldAutoFocus/>
   </div>
 </template>
 

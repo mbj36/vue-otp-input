@@ -2,7 +2,7 @@
   <div class="div__style">
     <span v-for="i in numInputs" :key="i">
       <div class="sep">
-        <input :class="inputStyle ? '' : 'inputStyling'" :style="inputStyle" type="tel" maxLength="1" />
+        <input :class="inputStyle ? '' : 'inputStyling'" :disabled="disable" :style="inputStyle" type="tel" maxLength="1" ref="input" />
         <span v-show="i < numInputs">{{seperator}}</span>
       </div>
     </span>
@@ -31,11 +31,15 @@
         type: Object,
         required: false
       },
+      disabled: {
+        type: Boolean,
+        required: false
+      },
       onChange: {
         type: Function,
         required: false
       },
-      disabled: {
+      disable: {
         type: Boolean,
         required: false
       },
@@ -56,6 +60,12 @@
       focusPrevInput() {
         const { activeInput } = this;
         this.focusInput(activeInput - 1);
+      }
+    },
+    mounted: function() {
+      const { shouldAutoFocus } = this;
+      if (shouldAutoFocus) {
+        this.$refs.input[0].focus();
       }
     }
   };
