@@ -12,7 +12,9 @@
 <script>
   export default {
     data() {
-      return {};
+      return {
+        activeInput: ''
+      };
     },
     props: {
       numInputs: {
@@ -40,6 +42,20 @@
       shouldAutoFocus: {
         type: Boolean,
         required: false
+      }
+    },
+    methods: {
+      focusInput(input) {
+        const { numInputs } = this;
+        this.activeInput = Math.max(Math.min(numInputs - 1, input), 0);
+      },
+      focusNextInput() {
+        const { activeInput } = this;
+        this.focusInput(activeInput + 1);
+      },
+      focusPrevInput() {
+        const { activeInput } = this;
+        this.focusInput(activeInput - 1);
       }
     }
   };

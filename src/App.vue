@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <VueOtpInput seperator="-" :numInputs="4 " />
+    <VueOtpInput seperator="-" :numInputs="5" />
   </div>
 </template>
 
@@ -14,7 +14,8 @@
     },
     components: {
       VueOtpInput
-    }
+    },
+    methods: {}
   };
 </script>
 
