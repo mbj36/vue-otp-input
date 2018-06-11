@@ -2,7 +2,7 @@
   <div class="div__style">
     <span v-for="i in numInputs" :key="i">
       <div class="sep">
-        <input @keydown="handleKey" :class="inputStyle ? '' : 'inputStyling'" :disabled="disabled" :style="inputStyle" type="tel" maxLength="1" ref="input" />
+        <input @keydown="handleKey" @change="handleChange" :class="inputStyle ? '' : 'inputStyling'" :disabled="disabled" :style="inputStyle" type="tel" maxLength="1" ref="input" />
         <span v-show="i < numInputs">
           <strong>{{seperator}}</strong>
         </span>
@@ -15,8 +15,7 @@
   export default {
     data() {
       return {
-        activeInput: 0,
-        otp: []
+        activeInput: 0
       };
     },
     props: {
@@ -50,7 +49,7 @@
     methods: {
       focusInput(input) {
         const { numInputs } = this;
-        this.activeInput = this.$refs.input.map(input => input.focus());
+        this.activeInput = Math.max(Math.min(numInputs - 1, input), 0);
       },
       focusNextInput() {
         const { activeInput } = this;
@@ -64,22 +63,25 @@
         switch (e.keyCode) {
           case 8:
             e.preventDefault();
-            this.focusPrevInput();
+            this.focusPrevInput(this.activeInput);
             break;
           case 46:
             e.preventDefault();
             break;
           case 37:
             e.preventDefault();
-            this.focusPrevInput();
+            this.focusPrevInput(this.activeInput);
             break;
           case 39:
             e.preventDefault();
-            this.focusNextInput();
+            this.focusNextInput(this.activeInput);
             break;
           default:
             break;
         }
+      },
+      handleChange(e) {
+        this.focusNextInput();
       }
     },
     mounted: function() {
