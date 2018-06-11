@@ -2,7 +2,7 @@
   <div class="div__style">
     <span v-for="i in numInputs" :key="i">
       <div class="sep">
-        <input :class="inputStyle ? '' : 'inputStyling'" :disabled="disable" :style="inputStyle" type="tel" maxLength="1" ref="input" />
+        <input :class="inputStyle ? '' : 'inputStyling'" :disabled="disabled" :style="inputStyle" type="tel" maxLength="1" ref="input" />
         <span v-show="i < numInputs">{{seperator}}</span>
       </div>
     </span>
@@ -31,15 +31,11 @@
         type: Object,
         required: false
       },
-      disabled: {
-        type: Boolean,
-        required: false
-      },
       onChange: {
         type: Function,
         required: false
       },
-      disable: {
+      disabled: {
         type: Boolean,
         required: false
       },
