@@ -2,7 +2,7 @@
   <div class="div__style">
     <span v-for="i in numInputs" :key="i">
       <div class="sep">
-        <input :class="{inputStyle:!inputStyle}" type="tel" maxLength="1" />
+        <input :class="inputStyle ? '' : 'inputStyling'" :style="inputStyle" type="tel" maxLength="1" />
         <span v-show="i < numInputs">{{seperator}}</span>
       </div>
     </span>
@@ -46,7 +46,7 @@
 </script>
 
 <style>
-  .inputStyle {
+  .inputStyling {
     width: 1em;
     text-align: center;
     font-size: 16px;
